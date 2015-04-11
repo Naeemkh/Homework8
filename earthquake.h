@@ -10,59 +10,63 @@
 using namespace std;
 
 enum months {
-    January = 1,
-    February,
-    March,
-    April,
-    May,
-    June,
-    July,
-    August,
-    September,
-    October,
-    November,
-    December
+	January = 1,
+	February,
+	March,
+	April,
+	May,
+	June,
+	July,
+	August,
+	September,
+	October,
+	November,
+	December
 };
 
 enum Magnitude_Type {
-    ML, Ms, Mb, Mw
+	ML, Ms, Mb, Mw
 };
 
 class Earthquake {
 
 public:
-    void set_lat(Earthquake er_info[1], ofstream&, double);
-    void set_lon(Earthquake er_info[1], ofstream&, double);
-    void set_depth(Earthquake er_info[1], ofstream&, double);
-    void set_event_id(Earthquake er_info[1], ofstream&, string);
-    void set_event_date(Earthquake er_info[1], ofstream&, string);
-    void set_event_time(Earthquake er_info[1], ofstream&, string);
-    void set_time_zone(Earthquake er_info[1], ofstream&, string);
-    void set_event_name(Earthquake er_info[1], ofstream&, string);
-    void set_mag_type(Earthquake er_info[1], ofstream&, string);
-    void set_mag(Earthquake er_info[1], ofstream&, float);
+	void set_lat(Earthquake er_info[1], ofstream&, double);
+	void set_lon(Earthquake er_info[1], ofstream&, double);
+	void set_depth(Earthquake er_info[1], ofstream&, double);
+	void set_event_id(Earthquake er_info[1], ofstream&, string);
+	void set_event_date(Earthquake er_info[1], ofstream&, string);
+	void set_event_time(Earthquake er_info[1], ofstream&, string);
+	void set_time_zone(Earthquake er_info[1], ofstream&, string);
+	void set_event_name(Earthquake er_info[1], ofstream&, string);
+	void set_mag_type(Earthquake er_info[1], ofstream&, string);
+	void set_mag(Earthquake er_info[1], ofstream&, float);
 
-    double get_lat(Earthquake er_info[1]);
-    double get_lon(Earthquake er_info[1]);
-    double get_depth(Earthquake er_info[1]);
+	double get_lat(Earthquake er_info[1]);
+	double get_lon(Earthquake er_info[1]);
+	double get_depth(Earthquake er_info[1]);
 
-    string get_event_id(Earthquake er_info[1]);
-    string get_event_date(Earthquake er_info[1]);
-    string get_event_time(Earthquake er_info[1]);
-    string get_time_zone(Earthquake er_info[1]);
-    string get_event_name(Earthquake er_info[1]);
-    string get_mag_type(Earthquake er_info[1]);
-    float get_mag(Earthquake er_info[1]);
+	string get_event_id(Earthquake er_info[1]);
+	string get_event_date(Earthquake er_info[1]);
+	string get_event_time(Earthquake er_info[1]);
+	string get_time_zone(Earthquake er_info[1]);
+	string get_event_name(Earthquake er_info[1]);
+	string get_mag_type(Earthquake er_info[1]);
+	float get_mag(Earthquake er_info[1]);
+
+	string Magnitude_Type_to_string(Magnitude_Type);
+	months int_to_months(int);
+	Magnitude_Type string_to_Magnitude_Type(string);
 
 private:
-    double lat;
-    double lon;
-    double depth;
-    string event_id;
-    string event_date;
-    string event_time;
-    string time_zone;
-    string event_name;
-    string mag_t;
-    float mag;
+	double lat;
+	double lon;
+	double depth;
+	string event_id;
+	string event_date;
+	string event_time;
+	string time_zone;
+	string event_name;
+	string mag_t;
+	float mag;
 };
