@@ -64,7 +64,7 @@ months int_to_months(int);
 
 string uppercase(string &);
 
-
+/********************************* main function ****************************************/
 
 //MAIN FUNCTION STARTS HERE
 
@@ -81,6 +81,14 @@ int main(int argc, char** argv) {
 		
 	}
 	
+    ofstream errorfile;
+    ifstream inputfile;
+    ofstream outputfile;
+    
+    open_output(errorfile, "logfile.log");
+    
+    for (list<string>::iterator it = file_names.begin(); it != file_names.end();
+         it++) {
 	
 	// Now each file name like file_names[1] or file_names[2] ..... can work as individual input file
 	// Also we got a variable of number of earthquakes as num_eqs
@@ -90,6 +98,11 @@ int main(int argc, char** argv) {
 	// Here We can process each job with each file name .. file_names[].
 	
     //..........
+        
+        print_output(errorfile, cout, "==== \n\n");
+     
 	
-    return 0;
+   }
+    print_output(errorfile, cout, "Finished All! \n\n");
+    errorfile.close();
 }
