@@ -1,5 +1,50 @@
 #include "earthquake.h"
 
+void Earthquake::set_lat(Earthquake er_info[1], ofstream& errorfile,
+		double lat1) {
+	if (-60 <= lat1 && lat1 <= 60) {
+		lat = lat1;
+	} else {
+		print_output(errorfile, cout, "Latitude is not valid. \n");
+		errorfile.close();
+		break; // This break should exit from a earthquake file, not from the program. Needs farther check whether it works !
+	}
+}
+
+double Earthquake::get_lat(Earthquake er_info[1]) {
+	return lat;
+}
+
+void Earthquake::set_lon(Earthquake er_info[1], ofstream& errorfile,
+		double lon1) {
+	if (-180 <= lon1 && lon1 <= 180) {
+		lon = lon1;
+	} else {
+		print_output(errorfile, cout, "Longitude is not valid. \n");
+		errorfile.close();
+		break;
+	}
+}
+
+double Earthquake::get_lon(Earthquake er_info[1]) {
+	return lon;
+}
+
+void Earthquake::set_depth(Earthquake er_info[1], ofstream& errorfile,
+		double depth1) {
+	if (0 <= depth1) {
+		depth = depth1;
+	} else {
+		print_output(errorfile, cout, "Depth of earthquake is not valid. \n");
+		errorfile.close();
+		break;
+	}
+}
+
+double Earthquake::get_depth(Earthquake er_info[1]) {
+	return depth;
+}
+
 void Earthquake::set_event_id(Earthquake er_info[1], ofstream& errorfile, string line) {
 	event_id = line;
 }
