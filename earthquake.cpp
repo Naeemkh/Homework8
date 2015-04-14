@@ -1,7 +1,9 @@
 #include "earthquake.h"
 
-void Earthquake::set_event_id(Earthquake er_info[1], ofstream& errorfile, string line) {
-	event_id = line;
+void Earthquake::set_event_id(Earthquake er_info[1], ofstream& errorfile,
+							  string line) {
+
+								  event_id = line;
 }
 
 string Earthquake::get_event_id(Earthquake er_info[1]) {
@@ -31,25 +33,25 @@ void Earthquake::set_event_date(Earthquake er_info[1], ofstream& errorfile, stri
 		year1 >> yyyy;
 
 		if (!isdigit(event_date1[0]) || !isdigit(event_date1[1]) || !isdigit(event_date1[3]) || !isdigit(event_date1[4])) {
-			print_output(errorfile, cout, "Error: Date of earthquake is not valid. \n");
+			print_output(errorfile, cout, "Error: Date of earthquake is not valid. \n";
 			errorfile.close();
 			exit (EXIT_FAILURE);
 		}
 
 		if (!isdigit(event_date1[6]) || !isdigit(event_date1[7]) || !isdigit(event_date1[8]) || !isdigit(event_date1[9])) {
-			print_output(errorfile, cout, "Error: Date of earthquake is not valid. \n");
+			print_output(errorfile, cout, "Error: Date of earthquake is not valid. \n";
 			errorfile.close();
 			exit (EXIT_FAILURE);
 		} else {
 			if (mm < 1 || mm > 12 || dd < 1 || dd > 31 || yyyy < 1850 || yyyy > 2016) {
-				print_output(errorfile, cout, "Error: Date digits are not valid. \n");
+				print_output(errorfile, cout, "Error: Date digits are not valid. \n";
 				errorfile.close();
 				exit(EXIT_FAILURE);
 			}
 		}
 
 		if ((event_date1[2] != '/' || event_date1[5] != '/') && (event_date1[2] != '-' || event_date1[5] != '-')) {
-			print_output(errorfile, cout, "Error: Date format is not valid. \n");
+			print_output(errorfile, cout, "Error: Date format is not valid. \n";
 			errorfile.close();
 			exit (EXIT_FAILURE);
 		} else {
@@ -57,7 +59,7 @@ void Earthquake::set_event_date(Earthquake er_info[1], ofstream& errorfile, stri
 		}
 
 	} else {
-		print_output(errorfile, cout, "Error: Date of earthquake is not valid. \n");
+		print_output(errorfile, cout, "Error: Date of earthquake is not valid. \n";
 		errorfile.close();
 		exit (EXIT_FAILURE);
 	}
@@ -94,24 +96,24 @@ void Earthquake::set_event_time(Earthquake er_info[1], ofstream& errorfile, stri
 		//  Meanwhile the hour, minute, second should be valid numbers
 
 		if (!isdigit(event_time1[0]) || !isdigit(event_time1[1]) || !isdigit(event_time1[3]) || !isdigit(event_time1[4])) {
-			print_output(errorfile, cout, "Error: time of earthquake is not valid. \n");
+			print_output(errorfile, cout, "Error: time of earthquake is not valid. \n";
 			errorfile.close();
 			exit (EXIT_FAILURE);
 		}
 
 		if (!isdigit(event_time1[6]) || !isdigit(event_time1[7]) || !isdigit(event_time1[9]) || !isdigit(event_time1[10]) || !isdigit(event_time1[11])) {
-			print_output(errorfile, cout, "Error: time of earthquake is not valid. \n");
+			print_output(errorfile, cout, "Error: time of earthquake is not valid. \n";
 			errorfile.close();
 			exit (EXIT_FAILURE);
 		}
 
 		if (hr < 0 || hr > 24 || min < 0 || min > 60 || sec < 0.0009 || sec > 59.9999) {
-			print_output(errorfile, cout, "Error: time digits are not valid. \n");
+			print_output(errorfile, cout, "Error: time digits are not valid. \n";
 			errorfile.close();
 			exit (EXIT_FAILURE);
 		}
 		if (event_time1[2] != ':' || event_time1[5] != ':' || event_time1[8] != '.') {
-			print_output(errorfile, cout, "Error: time format is not valid. \n");
+			print_output(errorfile, cout, "Error: time format is not valid. \n";
 			errorfile.close();
 			exit (EXIT_FAILURE);
 		}
@@ -119,7 +121,7 @@ void Earthquake::set_event_time(Earthquake er_info[1], ofstream& errorfile, stri
 		event_time = event_time1;
 
 	} else {
-		print_output(errorfile, cout, "Error: time of earthquake is not valid. \n");
+		print_output(errorfile, cout, "Error: time of earthquake is not valid. \n";
 		errorfile.close();
 		exit (EXIT_FAILURE);
 	}
@@ -128,38 +130,4 @@ void Earthquake::set_event_time(Earthquake er_info[1], ofstream& errorfile, stri
 
 string Earthquake::get_event_time(Earthquake er_info[1]) {
 	return event_time;
-}
-
-void Earthquake::set_mag(Earthquake er_info[1], ofstream& errorfile, float mag1) {
-
-	if (mag1 < 0) {
-		print_output(errorfile, cout, "Error: The magnitude_size is not valid \n");
-		errorfile.close();
-		exit (EXIT_FAILURE);
-	} else {
-		mag = mag1;
-	}
-}
-
-float Earthquake::get_mag(Earthquake er_info[1]) {
-	return mag;
-}
-
-months int_to_months(int a) {
-
-	if (a == 1) return January;
-	if (a == 2) return February;
-	if (a == 3) return March;
-	if (a == 4) return April;
-	if (a == 5) return May;
-	if (a == 6) return June;
-	if (a == 7) return July;
-	if (a == 8) return August;
-	if (a == 9) return September;
-	if (a == 10) return October;
-	if (a == 11) return November;
-	if (a == 12) return December;
-
-	// It should never get here!!
-	exit (EXIT_FAILURE);
 }
