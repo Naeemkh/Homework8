@@ -106,3 +106,26 @@ int main(int argc, char** argv) {
     print_output(errorfile, cout, "Finished All! \n\n");
     errorfile.close();
 }
+
+//////**************** Function Definition ********************************/////
+
+//void print_summary(ofstream& errorfile, int invalid_counter, int valid_counter,
+//		int total_co, string eq_file_name) {
+
+//	print_output(errorfile, cout, "Total invalid entries ignored: ");
+//	print_output(errorfile, cout, invalid_counter);
+//	print_output(errorfile, cout, "\n");
+
+//	print_output(errorfile, cout, "Total valid entries read: ");
+//	print_output(errorfile, cout, valid_counter);
+//	print_output(errorfile, cout, "\n");
+
+//	print_output(errorfile, cout, "Total signal names produced: ");
+//	print_output(errorfile, cout, total_co);
+//	print_output(errorfile, cout, "\n");
+//	print_output(errorfile, cout, "Finished   ");
+//	string input_fname1 = eq_file_name + ".in \n";
+//	print_output(errorfile, cout, input_fname1);
+//	print_output(errorfile, cout, "\n");
+//}
+
