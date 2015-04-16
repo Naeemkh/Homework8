@@ -21,15 +21,8 @@
 
 using namespace std;
 
-////A FUNCTION THAT CAN PRINT THE INPUT FILE NAMES
-//
-//void get_file_names (const char* filename) { 
-//	
-//	cout << filename << endl;
-//} 
 
-
-/***************************** function prototypes *************************************/
+/***************************** Function prototypes *************************************/
 
 bool read_input(ifstream&, ofstream&, Event db[MAXSIZE], int &, int &, int &,
                 int &, int &, vector<Event> &dbv);
@@ -42,20 +35,16 @@ void read_check_header(ifstream& inputfile, ofstream&, Earthquake er_info[1], st
 
 void print_summary(ofstream& errorfile, int, int, int, string);
 
-/********************************* main function ****************************************/
-
-//MAIN FUNCTION STARTS HERE
+/********************************* Main function ****************************************/
 
 int main(int argc, char** argv) {
     
-    
-	
-//	int num_eqs = argc-1;                 //Declaring & Getting number of earthquakes
-	list< string > file_names;               //Declaring input file names
+//	int num_eqs = argc-1;                 
+	list< string > file_names;               
 	
 	for (int i = 1; i < argc; ++i) {
 //		get_file_names (argv[i]);
-		file_names.push_back(argv[i]);    //Storing file names in a list
+		file_names.push_back(argv[i]);    
 		
 	}
 	
