@@ -1,4 +1,12 @@
 #include "station.h"
+#include "input_validate.h"
+
+string Event::uppercase(string & s) {
+	string result = s;
+	for (int i = 0; i < (int) result.size(); i++)
+		result[i] = toupper(result[i]);
+	return result;
+}
 
 Network_Code Event::string_to_Network_Code(string s) {
 
