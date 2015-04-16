@@ -35,7 +35,7 @@ public:
 	void set_lon(Earthquake er_info[1], ofstream&, double);
 	void set_depth(Earthquake er_info[1], ofstream&, double);
 	void set_event_id(Earthquake er_info[1], ofstream&, string);
-	void set_event_date(Earthquake er_info[1], ofstream&, string);
+	void set_event_date(Earthquake er_info[1], ofstream&, string, string);
 	void set_event_time(Earthquake er_info[1], ofstream&, string);
 	void set_time_zone(Earthquake er_info[1], ofstream&, string);
 	void set_event_name(Earthquake er_info[1], ofstream&, string);
@@ -54,8 +54,8 @@ public:
 	string get_mag_type(Earthquake er_info[1]);
 	float get_mag(Earthquake er_info[1]);
 
+        string uppercase(string &);
 	string Magnitude_Type_to_string(Magnitude_Type);
-	months int_to_months(int);
 	Magnitude_Type string_to_Magnitude_Type(string);
 
 private:
