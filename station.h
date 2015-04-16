@@ -45,6 +45,8 @@ public:
 	string Band_Type_to_string(Band_Type c);
 	Band_Type string_to_Band_Type(string);
 	Instro_Type string_to_instro_Type(string);
+	
+	string uppercase(string &);
 
 private:
 	Network_Code nt_name;
