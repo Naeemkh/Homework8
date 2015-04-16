@@ -187,17 +187,117 @@ string Earthquake::get_event_time(Earthquake er_info[1]) {
 	return event_time;
 }
 
-void Earthquake::set_mag(Earthquake er_info[1], ofstream& errorfile, float mag1) {
 
-	if (mag1 < 0) {
-		print_output(errorfile, cout, "Error: The magnitude_size is not valid \n");
-		errorfile.close();
-		exit (EXIT_FAILURE);
+int Earthquake::set_time_zone(Earthquake er_info[1], ofstream& errorfile,
+		string time_zone1) {
+
+	int s = time_zone1.size();
+	stringstream os1;
+	bool tzone_flag = 0;
+
+	if (s != 3) {
+		tzone_flag = 1;
+	}
+
+	if (tzone_flag == 0) {
+		time_zone = time_zone1;
+		return 0;
 	} else {
+
+		print_output(errorfile, cout, "Time zone format is not valid. \n");
+		//errorfile.close();
+		return 1;
+
+	}
+
+}
+
+string Earthquake::get_time_zone(Earthquake er_info[1]) {
+	return time_zone;
+}
+
+void Earthquake::set_event_name(Earthquake er_info[1], ofstream& errorfile,
+		string event_name1) {
+
+	event_name = event_name1;
+}
+
+string Earthquake::get_event_name(Earthquake er_info[1]) {
+	return event_name;
+}
+
+int Earthquake::set_mag_type(Earthquake er_info[1], ofstream& errorfile,
+		string mag_t1) {
+
+	string ss = uppercase(mag_t1);
+	if ((ss == "ML") || (ss == "MS") || (ss == "MB") || (ss == "MW")) {
+		mag_t = mag_t1;
+		return 0;
+	} else {
+		print_output(errorfile, cout, "Magnitude type is not valid. \n");
+		//errorfile.close();
+		return 1;
+	}
+
+}
+
+string Earthquake::get_mag_type(Earthquake er_info[1]) {
+	return mag_t;
+}
+
+int Earthquake::set_mag(Earthquake er_info[1], ofstream& errorfile,
+		float mag1) {
+	if (mag1 >= 0) {
 		mag = mag1;
+		return 0;
+	} else {
+		print_output(errorfile, cout, "Magnitude is not in valid range. \n");
+		//errorfile.close();
+		return 1;
 	}
 }
 
 float Earthquake::get_mag(Earthquake er_info[1]) {
 	return mag;
 }
+
+string Earthquake::uppercase(string & s) {
+	string result = s;
+	for (int i = 0; i < (int) result.size(); i++)
+		result[i] = toupper(result[i]);
+	return result;
+}
+
+
+string Earthquake::Magnitude_Type_to_string(Magnitude_Type c) {
+	switch (c) {
+	case ML:
+		return "ML";
+	case Ms:
+		return "Ms";
+	case Mb:
+		return "Mb";
+	case Mw:
+		return "Mw";
+	}
+	// It should never get here!!
+	exit(EXIT_FAILURE);
+}
+
+Magnitude_Type Earthquake::string_to_Magnitude_Type(string s) {
+
+	string ss = uppercase(s);
+
+	if (ss == "ML")
+		return ML;
+	if (ss == "MS")
+		return Ms;
+	if (ss == "MB")
+		return Mb;
+	if (ss == "MW")
+		return Mw;
+
+	// It should never get here!!
+	exit(EXIT_FAILURE);
+}
+
