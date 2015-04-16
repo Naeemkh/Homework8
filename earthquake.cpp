@@ -53,7 +53,7 @@ string Earthquake::get_event_id(Earthquake er_info[1]) {
 	return event_id;
 }
 
-void Earthquake::set_event_date(Earthquake er_info[1], ofstream& errorfile, string event_date1) {
+void Earthquake::set_event_date(Earthquake er_info[1], ofstream& errorfile, string event_date1, string month_name) {
 
 	int dd, yyyy, mm;
 	string month, day, year;
@@ -99,6 +99,18 @@ void Earthquake::set_event_date(Earthquake er_info[1], ofstream& errorfile, stri
 			exit (EXIT_FAILURE);
 		} else {
 			event_date = event_date1;
+			if      (mm == (months)1)  month_name = "January";
+                        else if (mm == (months)2)  month_name = "February";
+                        else if (mm == (months)3)  month_name = "March";
+                        else if (mm == (months)4)  month_name = "April";
+                        else if (mm == (months)5)  month_name = "May";
+                        else if (mm == (months)6)  month_name = "June";
+                        else if (mm == (months)7)  month_name = "July";
+                        else if (mm == (months)8)  month_name = "August";
+                        else if (mm == (months)9)  month_name = "September";
+                        else if (mm == (months)10) month_name = "October";
+                        else if (mm == (months)11) month_name = "November";
+                        else if (mm == (months)12) month_name = "December";
 		}
 
 	} else {
@@ -188,23 +200,4 @@ void Earthquake::set_mag(Earthquake er_info[1], ofstream& errorfile, float mag1)
 
 float Earthquake::get_mag(Earthquake er_info[1]) {
 	return mag;
-}
-
-months int_to_months(int a) {
-
-	if (a == 1) return January;
-	if (a == 2) return February;
-	if (a == 3) return March;
-	if (a == 4) return April;
-	if (a == 5) return May;
-	if (a == 6) return June;
-	if (a == 7) return July;
-	if (a == 8) return August;
-	if (a == 9) return September;
-	if (a == 10) return October;
-	if (a == 11) return November;
-	if (a == 12) return December;
-
-	// It should never get here!!
-	exit (EXIT_FAILURE);
 }
