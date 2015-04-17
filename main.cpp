@@ -55,7 +55,7 @@ months int_to_months(int);
 
 int main(int argc, char** argv) {
     
-    list<string> file_names;
+    list < string > file_names;
     
     for (int i = 1; i < argc; ++i) {
         
@@ -87,7 +87,6 @@ int main(int argc, char** argv) {
                                              month, day, year, eq_file_name);
         
         if (file_correct == 1) {
-            //errorfile.close();
             
             print_output(errorfile, cout, "Finished   ");
             string input_fname1 = eq_file_name + ".in \n";
@@ -211,7 +210,7 @@ months int_to_months(int a) {
         return December;
     
     // It should never get here!!
-    exit(EXIT_FAILURE);
+    exit (EXIT_FAILURE);
 }
 
 string month_to_string(months c) {
@@ -242,7 +241,7 @@ string month_to_string(months c) {
             return "December";
     }
     // It should never get here!!
-    exit(EXIT_FAILURE);
+    exit (EXIT_FAILURE);
 }
 
 void print_header(int month, int day, int year, Earthquake er_info[1],
