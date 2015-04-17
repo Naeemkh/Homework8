@@ -41,6 +41,7 @@ public:
 	void set_event_name(Earthquake er_info[1], ofstream&, string);
 	int set_mag_type(Earthquake er_info[1], ofstream&, string);
 	int set_mag(Earthquake er_info[1], ofstream&, float);
+        Magnitude_Type string_to_Magnitude_Type(string);
 
 
 	double get_lat(Earthquake er_info[1]);
@@ -60,6 +61,7 @@ public:
 	Magnitude_Type string_to_Magnitude_Type(string);
 
 private:
+bool is_date_valid(string event_date, int & month, int & day, int & year);
 	double lat;
 	double lon;
 	double depth;
@@ -70,4 +72,5 @@ private:
 	string event_name;
 	string mag_t;
 	float mag;
+
 };
