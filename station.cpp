@@ -89,7 +89,7 @@ string Event::Instro_Type_to_string(Instro_Type c) {
 
 
 
-bool Event::set_nt_name(Event db[MAXSIZE], string nt_name1, int total_entry,
+bool Event::set_nt_name(string nt_name1, int total_entry,
 		ofstream& errorfile) {
 
 	string ss = uppercase(nt_name1);
@@ -113,12 +113,12 @@ bool Event::set_nt_name(Event db[MAXSIZE], string nt_name1, int total_entry,
 	}
 }
 
-Network_Code Event::get_nt_name(Event db[MAXSIZE]) {
+Network_Code Event::get_nt_name() {
 
 	return nt_name;
 }
 
-bool Event::set_st_name(Event db[MAXSIZE], string st_name1, int total_entry,
+bool Event::set_st_name(string st_name1, int total_entry,
 		ofstream& errorfile) {
 
 	bool st_flag = 0;
@@ -167,11 +167,11 @@ bool Event::set_st_name(Event db[MAXSIZE], string st_name1, int total_entry,
 	}
 }
 
-string Event::get_st_name(Event db[MAXSIZE]) {
+string Event::get_st_name() {
 	return st_name;
 }
 
-bool Event::set_Ins_type(Event db[MAXSIZE], string Ins_type1, int total_entry, ofstream& errorfile) {
+bool Event::set_Ins_type(string Ins_type1, int total_entry, ofstream& errorfile) {
 
 	string ss = uppercase(Ins_type1);
 
@@ -229,7 +229,7 @@ Band_Type Event::get_band_type() {
 	return b_type;
 }
 
-bool Event::set_orientation(Event db[MAXSIZE], string orientation1, int total_entry, ofstream& errorfile) {
+bool Event::set_orientation(string orientation1, int total_entry, ofstream& errorfile) {
 
 	bool or_flag = 0;
 	int kk = 1;
