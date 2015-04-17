@@ -211,14 +211,10 @@ string Earthquake::get_event_time(Earthquake er_info[1]) {
 	return event_time;
 }
 
-<<<<<<< HEAD
-=======
+
 string Earthquake::get_event_date(Earthquake er_info[1]) {
 	return event_date;
 }
-
-
->>>>>>> 7ba907d1e1ce1dee7e660f0ded974a386e57f01d
 
 
 int Earthquake::set_time_zone(Earthquake er_info[1], ofstream& errorfile,
