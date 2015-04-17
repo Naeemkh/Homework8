@@ -118,11 +118,9 @@ Network_Code Event::get_nt_name() {
 	return nt_name;
 }
 
-<<<<<<< HEAD
-bool Event::set_st_name( string st_name1, int total_entry,
-=======
+
 bool Event::set_st_name(string st_name1, int total_entry,
->>>>>>> 7ba907d1e1ce1dee7e660f0ded974a386e57f01d
+
 		ofstream& errorfile) {
 
 	bool st_flag = 0;
@@ -175,11 +173,8 @@ string Event::get_st_name() {
 	return st_name;
 }
 
-<<<<<<< HEAD
-bool Event::set_Ins_type( string Ins_type1, int total_entry, ofstream& errorfile) {
-=======
+
 bool Event::set_Ins_type(string Ins_type1, int total_entry, ofstream& errorfile) {
->>>>>>> 7ba907d1e1ce1dee7e660f0ded974a386e57f01d
 
 	string ss = uppercase(Ins_type1);
 
