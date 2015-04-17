@@ -196,7 +196,7 @@ bool Event::set_Ins_type(Event db[MAXSIZE], string Ins_type1, int total_entry, o
 
 }
 
-Instro_Type Event::get_Ins_type(Event db[MAXSIZE]) {
+Instro_Type Event::get_Ins_type() {
 	return Ins_type;
 }
 
@@ -264,6 +264,6 @@ bool Event::set_orientation(Event db[MAXSIZE], string orientation1, int total_en
 
 }
 
-string Event::get_orientation(Event db[MAXSIZE]) {
+string Event::get_orientation() {
 	return orientation;
 }
