@@ -53,6 +53,8 @@ int read_check_header(ifstream& inputfile, ofstream&, Earthquake er_info[1],
 
 void print_summary(ofstream& errorfile, int, int, int, string);
 
+months int_to_months(int);
+
 /********************************* Main function ****************************************/
 
 int main(int argc, char** argv) {
@@ -75,15 +77,15 @@ int main(int argc, char** argv) {
     for (list<string>::iterator it = file_names.begin(); it != file_names.end();
          it++) {
 	
-                string eq_file_name = *it;
+		string eq_file_name = *it;
 		string output_fname = eq_file_name + ".out";
 
-		string month_name, day, year;
+		//string month_name, day, year;
+		int month = 0, day = 0, year = 0;
 		int total_entry = 0, invalid_counter = 0, valid_counter = 0, total_co =
 				0;
 
-		Event db[MAXSIZE];
-		vector<Event> dbv(10);
+		vector<Event*> dbv;
 		Earthquake er_info[1];
 		int number_of_events;
 
@@ -108,6 +110,9 @@ if (file_correct == 1) {
 	         	open_output(outputfile, errorfile, output_fname);
 
 		        print_header(month, day, year, er_info, outputfile);
+		        
+		        read_input(inputfile, errorfile, number_of_events, total_co,
+				invalid_counter, total_entry, valid_counter, dbv);
 
 				print_summary(errorfile, invalid_counter, valid_counter, total_co,
 				eq_file_name);
@@ -185,13 +190,17 @@ int read_check_header(ifstream& inputfile, ofstream& errorfile,
 
 }
 
-void print_header(string month_name, string day, string year, Earthquake er_info[1],
+//void print_header(string month_name, string day, string year, Earthquake er_info[1],
+	//	ofstream& outputfile) {
+	
+void print_header(int month, int day, int year, Earthquake er_info[1],
 		ofstream& outputfile) {
 
 	string lat, lon, depth, event_id, mag, event_name, magnitude, event_time,
 			time_zone, mag_t;
 
-	outputfile << "# " << day << " " << month_name
+	//outputfile << "# " << day << " " << month_name
+	outputfile << "# " << day << " " << month_to_string(int_to_months(month))
 			<< " " << year << " " << er_info[0].get_event_time(er_info) << " "
 			<< er_info[0].get_time_zone(er_info) << " "
 			<< er_info[0].Magnitude_Type_to_string(
