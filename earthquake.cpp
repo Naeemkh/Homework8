@@ -53,71 +53,163 @@ string Earthquake::get_event_id(Earthquake er_info[1]) {
 	return event_id;
 }
 
-void Earthquake::set_event_date(Earthquake er_info[1], ofstream& errorfile, string event_date1, string month_name) {
+void Earthquake::set_event_id(Earthquake er_info[1], ofstream& errorfile,
+		string event_id1) {
 
-	int dd, yyyy, mm;
-	string month, day, year;
-	stringstream month1, day1, year1;
+	event_id = event_id1;
+}
 
-	// Check for the date format (it must be mm/dd/year or mm-dd-year and 10 digits)
+string Earthquake::get_event_id(Earthquake er_info[1]) {
+	return event_id;
+}
 
-	if (event_date1.length() == 10) {
+int Earthquake::set_event_date(Earthquake er_info[1], ofstream& errorfile,
+		string event_date1, int &month, int &day, int &year) {
 
-		month = event_date1.substr(0, 2);
-		month1 << month;
-		month1 >> mm;
+	int s = event_date1.size();
+	int k = 0, delim;
+	int pos[2] = { 0 };
+	bool date_flag = 0;
 
-		day = event_date1.substr(3, 2);
-		day1 << day;
-		day1 >> dd;
+	int p1 = event_date1.find("/");
+	int p2 = event_date1.find("-");
 
-		year = event_date1.substr(6, 4);
-		year1 << year;
-		year1 >> yyyy;
+	if (p1 < 0 && (p2 < 0)) {
+		date_flag = 1;
+	} else if (p1 > 0 && p2 > 0) {
+		date_flag = 1;
+	} else if (p1 > 0 && p2 < 0) {
+		delim = 1;
+	} else if (p1 < 0 && p2 > 0) {
+		delim = 2;
+	}
 
-		if (!isdigit(event_date1[0]) || !isdigit(event_date1[1]) || !isdigit(event_date1[3]) || !isdigit(event_date1[4])) {
-			print_output(errorfile, cout, "Error: Date of earthquake is not valid. \n");
-			errorfile.close();
-			exit (EXIT_FAILURE);
-		}
+	if (date_flag == 0) {
 
-		if (!isdigit(event_date1[6]) || !isdigit(event_date1[7]) || !isdigit(event_date1[8]) || !isdigit(event_date1[9])) {
-			print_output(errorfile, cout, "Error: Date of earthquake is not valid. \n");
-			errorfile.close();
-			exit (EXIT_FAILURE);
-		} else {
-			if (mm < 1 || mm > 12 || dd < 1 || dd > 31 || yyyy < 1850 || yyyy > 2016) {
-				print_output(errorfile, cout, "Error: Date digits are not valid. \n");
-				errorfile.close();
-				exit(EXIT_FAILURE);
+		for (int i = 0; i < s; i++) {
+			switch (delim) {
+			case 1:
+				if (strncmp(&event_date1[i], "/", 1) == 0) {
+					pos[k] = i;
+					k = k + 1;
+				}
+				break;
+			case 2:
+				if (strncmp(&event_date1[i], "-", 1) == 0) {
+					pos[k] = i;
+					k = k + 1;
+				}
+				break;
 			}
 		}
-
-		if ((event_date1[2] != '/' || event_date1[5] != '/') && (event_date1[2] != '-' || event_date1[5] != '-')) {
-			print_output(errorfile, cout, "Error: Date format is not valid. \n");
-			errorfile.close();
-			exit (EXIT_FAILURE);
-		} else {
-			event_date = event_date1;
-			if      (mm == (months)1)  month_name = "January";
-                        else if (mm == (months)2)  month_name = "February";
-                        else if (mm == (months)3)  month_name = "March";
-                        else if (mm == (months)4)  month_name = "April";
-                        else if (mm == (months)5)  month_name = "May";
-                        else if (mm == (months)6)  month_name = "June";
-                        else if (mm == (months)7)  month_name = "July";
-                        else if (mm == (months)8)  month_name = "August";
-                        else if (mm == (months)9)  month_name = "September";
-                        else if (mm == (months)10) month_name = "October";
-                        else if (mm == (months)11) month_name = "November";
-                        else if (mm == (months)12) month_name = "December";
-		}
-
-	} else {
-		print_output(errorfile, cout, "Error: Date of earthquake is not valid. \n");
-		errorfile.close();
-		exit (EXIT_FAILURE);
 	}
+
+	if (k != 2) {
+		date_flag = 1;
+	} else {
+		stringstream m, d, y;
+
+		m << event_date1.substr(0, pos[0]);
+		d << event_date1.substr(pos[0] + 1, pos[1] - pos[0] - 1);
+		y << event_date1.substr(pos[1] + 1, s - pos[1]);
+
+		m >> month;
+		d >> day;
+		y >> year;
+
+		if (month < 0 || month > 12) {
+			date_flag = 1;
+		}
+		if (day < 0 || day > 31) {
+			date_flag = 1;
+		}
+		if (year < 1900 || year > 2015) {
+			date_flag = 1;
+		}
+	}
+
+	if (date_flag == 0) {
+
+		event_date = event_date1;
+		return 0;
+	} else {
+		print_output(errorfile, cout, "Date format is not valid. \n");
+		//errorfile.close();
+		return 1;
+
+	}
+}
+
+string Earthquake::get_event_date(Earthquake er_info[1]) {
+	return event_date;
+}
+
+int Earthquake::set_event_time(Earthquake er_info[1], ofstream& errorfile,
+		string event_time1) {
+
+	int s = event_time1.size();
+	int k = 0;
+	int pos[2] = { 0 };
+	bool time_flag = 0;
+
+	int p1 = event_time1.find(":");
+	int p2 = event_time1.find(".");
+
+	if (p1 < 0 && (p2 < 0)) {
+		time_flag = 1;
+	}
+	if (time_flag == 0) {
+
+		for (int i = 0; i < s; i++) {
+			if (strncmp(&event_time1[i], ":", 1) == 0) {
+				pos[k] = i;
+				k = k + 1;
+			}
+		}
+	}
+
+	if (k != 2 || pos[1] > p2) {
+		time_flag = 1;
+	} else {
+
+		stringstream hh;
+		stringstream mm;
+		stringstream ss;
+
+		int hour, min;
+		double second;
+
+		hh << event_time1.substr(0, pos[0]);
+		mm << event_time1.substr(pos[0] + 1, pos[1] - pos[0] - 1);
+		ss << event_time1.substr(pos[1] + 1, s - pos[1]);
+
+		hh >> hour;
+		mm >> min;
+		ss >> second;
+
+		if (hour < 0 || hour > 24) {
+			time_flag = 1;
+		}
+		if (min < 0 || min > 59) {
+			time_flag = 1;
+		}
+		if (second < 0 || second >= 60) {
+			time_flag = 1;
+		}
+	}
+
+	if (time_flag == 0) {
+		event_time = event_time1;
+		return 0;
+	} else {
+		print_output(errorfile, cout, "Time format is not valid. \n");
+		//errorfile.close();
+		return 1;
+	}
+}
+
+string Earthquake::get_event_time(Earthquake er_info[1]) {
+	return event_time;
 }
 
 string Earthquake::get_event_date(Earthquake er_info[1]) {
