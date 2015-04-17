@@ -27,9 +27,9 @@ enum Instro_Type {
 class Event {
 
 public:
-	void set_nt_name(Event db[MAXSIZE], Network_Code);
-	void set_st_name(Event db[MAXSIZE], string);
-	void set_b_type(Event db[MAXSIZE], string);
+        bool set_nt_name(string, int, ofstream&);
+	bool set_st_name(string, int, ofstream&);
+	bool set_b_type(string, int, ofstream&);
 	bool set_Ins_type(string, int, ofstream&);
 	bool set_orientation(string, int, ofstream&);
 
