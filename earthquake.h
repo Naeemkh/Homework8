@@ -35,8 +35,10 @@ public:
 	void set_lon(Earthquake er_info[1], ofstream&, double);
 	void set_depth(Earthquake er_info[1], ofstream&, double);
 	void set_event_id(Earthquake er_info[1], ofstream&, string);
-	void set_event_date(Earthquake er_info[1], ofstream&, string, string);
-	void set_event_time(Earthquake er_info[1], ofstream&, string);
+	int set_event_date(Earthquake er_info[1], ofstream&, string, int &, int &,
+			int &);
+	int set_event_time(Earthquake er_info[1], ofstream&, string);
+
 	int set_time_zone(Earthquake er_info[1], ofstream&, string);
 	void set_event_name(Earthquake er_info[1], ofstream&, string);
 	int set_mag_type(Earthquake er_info[1], ofstream&, string);
