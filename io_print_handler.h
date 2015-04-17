@@ -13,4 +13,5 @@ void print_output(ofstream&, ostream&, int);
 void open_input(ifstream&, ofstream&, string);
 void open_output(ofstream&, ofstream&, string);
 void open_output(ofstream&, string);
+string uppercase(string &);
 
