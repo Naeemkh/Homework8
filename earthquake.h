@@ -9,20 +9,20 @@
 
 using namespace std;
 
-enum months {
-	January = 1,
-	February,
-	March,
-	April,
-	May,
-	June,
-	July,
-	August,
-	September,
-	October,
-	November,
-	December
-};
+//enum months {
+//	January = 1,
+//	February,
+//	March,
+//	April,
+//	May,
+//	June,
+//	July,
+//	August,
+//	September,
+//	October,
+//	November,
+//	December
+//};
 
 enum Magnitude_Type {
 	ML, Ms, Mb, Mw
@@ -58,7 +58,7 @@ public:
 	string get_mag_type(Earthquake er_info[1]);
 	float get_mag(Earthquake er_info[1]);
 
-        string uppercase(string &);
+//        string uppercase(string &);
 	string Magnitude_Type_to_string(Magnitude_Type);
 
 private:

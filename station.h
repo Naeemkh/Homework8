@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <string.h>
 #include "io_print_handler.h"
-#include "input_validate.h"
+
 
 using namespace std;
 
@@ -48,7 +48,7 @@ public:
 	Band_Type string_to_Band_Type(string);
 	Instro_Type string_to_instro_Type(string);
 	
-	string uppercase(string &);
+//	string uppercase(string &);
 
 private:
 	Network_Code nt_name;
