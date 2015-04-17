@@ -200,10 +200,34 @@ Instro_Type Event::get_Ins_type() {
 	return Ins_type;
 }
 
+bool Event::set_b_type(string b_type1, int total_entry, ofstream& errorfile) {
+
+	string ss = uppercase(b_type1);
+	if ((ss == "LONG-PERIOD") || (ss == "SHORT-PERIOD")
+			|| (ss == "BROADBAND")) {
+
+		b_type = string_to_Band_Type(b_type1);
+
+		return 0;
+	} else {
+
+		stringstream ks;
+		string kk;
+		ks << total_entry;
+		ks >> kk;
+
+		print_output(errorfile, cout, "Entry # ");
+		print_output(errorfile, cout, kk);
+		print_output(errorfile, cout, " Ignored. ");
+		print_output(errorfile, cout, "Invalid band type. \n");
+
+		return 1;
+	}
+}
+
 Band_Type Event::get_band_type() {
 	return b_type;
 }
-
 
 bool Event::set_orientation(Event db[MAXSIZE], string orientation1, int total_entry, ofstream& errorfile) {
 
