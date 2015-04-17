@@ -261,12 +261,6 @@ float Earthquake::get_mag(Earthquake er_info[1]) {
 	return mag;
 }
 
-string Earthquake::uppercase(string & s) {
-	string result = s;
-	for (int i = 0; i < (int) result.size(); i++)
-		result[i] = toupper(result[i]);
-	return result;
-}
 
 
 string Earthquake::Magnitude_Type_to_string(Magnitude_Type c) {
