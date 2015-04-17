@@ -47,7 +47,9 @@ void generate_recorded_list(Earthquake er_info[1], ofstream&, int &, int &,
 		vector<Event *> &dbv);
 
 
-void read_check_header(ifstream& inputfile, ofstream&, Earthquake er_info[1], string);
+int read_check_header(ifstream& inputfile, ofstream&, Earthquake er_info[1],
+		int &, int&, int&, string);
+
 
 void print_summary(ofstream& errorfile, int, int, int, string);
 
@@ -85,7 +87,27 @@ int main(int argc, char** argv) {
 		Earthquake er_info[1];
 		int number_of_events;
 
-		read_check_header(inputfile, errorfile, er_info, eq_file_name);
+			int file_correct = read_check_header(inputfile, errorfile, er_info,
+				month, day, year, eq_file_name);
+
+if (file_correct == 1) {
+			//errorfile.close();
+
+			print_output(errorfile, cout, "Finished   ");
+			string input_fname1 = eq_file_name + ".in \n";
+			print_output(errorfile, cout, input_fname1);
+			print_output(errorfile, cout, "\n");
+			print_output(errorfile, cout, "==== \n\n");
+			inputfile.close();
+
+			continue;
+
+		}
+                	print_output(errorfile, cout, "Header read correctly! \n");
+
+	         	open_output(outputfile, errorfile, output_fname);
+
+		        print_header(month, day, year, er_info, outputfile);
 
 				print_summary(errorfile, invalid_counter, valid_counter, total_co,
 				eq_file_name);
@@ -109,11 +131,12 @@ int main(int argc, char** argv) {
 
 //////**************** Function Definition ********************************/////
 
-void read_check_header(ifstream& inputfile, ofstream& errorfile,
-		Earthquake er_info[1], string eq_file_name) {
+int read_check_header(ifstream& inputfile, ofstream& errorfile,
+		Earthquake er_info[1], int &month, int &day, int &year,
+		string eq_file_name) {
 
 	double t_lat, t_lon, t_depth;
-	string month_name, t_event_id, t_event_name, t_event_date, t_event_time, t_time_zone,
+	string t_event_id, t_event_name, t_event_date, t_event_time, t_time_zone,
 			t_mag_t;
 	float t_mag;
 
@@ -135,16 +158,30 @@ void read_check_header(ifstream& inputfile, ofstream& errorfile,
 	inputfile >> t_mag_t;
 	inputfile >> t_mag;
 
-	er_info[0].set_lon(er_info, errorfile, t_lon);
-	er_info[0].set_lat(er_info, errorfile, t_lat);
-	er_info[0].set_depth(er_info, errorfile, t_depth);
+	bool lon_flag = er_info[0].set_lon(er_info, errorfile, t_lon);
+	bool lat_flag = er_info[0].set_lat(er_info, errorfile, t_lat);
+	bool depth_flag = er_info[0].set_depth(er_info, errorfile, t_depth);
 	er_info[0].set_event_id(er_info, errorfile, t_event_id);
-	er_info[0].set_event_date(er_info, errorfile, t_event_date, month_name);
-	er_info[0].set_event_time(er_info, errorfile, t_event_time);
-	er_info[0].set_time_zone(er_info, errorfile, t_time_zone);
+	bool date_flag = er_info[0].set_event_date(er_info, errorfile, t_event_date,
+			month, day, year);
+	bool time_flag = er_info[0].set_event_time(er_info, errorfile,
+			t_event_time);
+	bool tzone_flag = er_info[0].set_time_zone(er_info, errorfile, t_time_zone);
 	er_info[0].set_event_name(er_info, errorfile, t_event_name);
-	er_info[0].set_mag_type(er_info, errorfile, t_mag_t);
-	er_info[0].set_mag(er_info, errorfile, t_mag);
+	bool mt_flag = er_info[0].set_mag_type(er_info, errorfile, t_mag_t);
+	bool mag_flag = er_info[0].set_mag(er_info, errorfile, t_mag);
+
+	if ((lon_flag == 0) && (lat_flag == 0) && (depth_flag == 0)
+			&& (date_flag == 0) && (time_flag == 0) && (tzone_flag == 0)
+			&& (mt_flag == 0) && (mag_flag == 0)) {
+
+		return 0;
+
+	} else {
+
+		return 1;
+
+	}
 
 }
 
