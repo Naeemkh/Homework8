@@ -31,9 +31,9 @@ enum Magnitude_Type {
 class Earthquake {
 
 public:
-	void set_lat(Earthquake er_info[1], ofstream&, double);
-	void set_lon(Earthquake er_info[1], ofstream&, double);
-	void set_depth(Earthquake er_info[1], ofstream&, double);
+	int set_lat(Earthquake er_info[1], ofstream&, double);
+	int set_lon(Earthquake er_info[1], ofstream&, double);
+	int set_depth(Earthquake er_info[1], ofstream&, double);
 	void set_event_id(Earthquake er_info[1], ofstream&, string);
 	int set_event_date(Earthquake er_info[1], ofstream&, string, int &, int &,
 			int &);
@@ -60,7 +60,6 @@ public:
 
         string uppercase(string &);
 	string Magnitude_Type_to_string(Magnitude_Type);
-	Magnitude_Type string_to_Magnitude_Type(string);
 
 private:
 bool is_date_valid(string event_date, int & month, int & day, int & year);
