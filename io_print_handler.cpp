@@ -56,3 +56,10 @@ void open_output(ofstream& errorfile, string errorfilename) {
 	}
 }
 
+string uppercase(string & s) {
+	string result = s;
+	for (int i = 0; i < (int) result.size(); i++)
+		result[i] = toupper(result[i]);
+	return result;
+}
+
