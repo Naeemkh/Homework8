@@ -34,10 +34,11 @@ public:
 	void set_orientation(Event db[MAXSIZE], string);
 
 	Network_Code get_nt_name(Event db[MAXSIZE]);
-	string get_st_name(Event db[MAXSIZE]);
-	Band_Type get_band_type(Event db[MAXSIZE]);
-	Instro_Type get_Ins_type(Event db[MAXSIZE]);
-	string get_orientation(Event db[MAXSIZE]);
+        string get_st_name();
+	Band_Type get_band_type();
+	Instro_Type get_Ins_type();
+	string get_orientation();
+
 
 	string Network_Code_to_string(Network_Code c);
 	Network_Code string_to_Network_Code(string);
