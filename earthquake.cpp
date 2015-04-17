@@ -212,9 +212,7 @@ string Earthquake::get_event_time(Earthquake er_info[1]) {
 }
 
 
-string Earthquake::get_event_date(Earthquake er_info[1]) {
-	return event_date;
-}
+
 
 
 int Earthquake::set_time_zone(Earthquake er_info[1], ofstream& errorfile,
