@@ -168,6 +168,138 @@ void print_header(string month_name, string day, string year, Earthquake er_info
 			<< er_info[0].get_depth(er_info) << ")" << "\n";
 
 }
+months int_to_months(int a) {
+
+	if (a == 1)
+		return January;
+	if (a == 2)
+		return February;
+	if (a == 3)
+		return March;
+	if (a == 4)
+		return April;
+	if (a == 5)
+		return May;
+	if (a == 6)
+		return June;
+	if (a == 7)
+		return July;
+	if (a == 8)
+		return August;
+	if (a == 9)
+		return September;
+	if (a == 10)
+		return October;
+	if (a == 11)
+		return November;
+	if (a == 12)
+		return December;
+
+	// It should never get here!!
+	exit(EXIT_FAILURE);
+}
+
+string month_to_string(months c) {
+	switch (c) {
+	case January:
+		return "January";
+	case February:
+		return "February";
+	case March:
+		return "March";
+	case April:
+		return "April";
+	case May:
+		return "May";
+	case June:
+		return "June";
+	case July:
+		return "July";
+	case August:
+		return "August";
+	case September:
+		return "September";
+	case October:
+		return "October";
+	case November:
+		return "November";
+	case December:
+		return "December";
+	}
+	// It should never get here!!
+	exit(EXIT_FAILURE);
+}
+
+bool read_input(ifstream& inputfile, ofstream& errorfile, int & size,
+		int & total_co, int & invalid_counter, int & total_entry,
+		int & valid_counter, vector<Event *> &dbv) {
+
+	string nt_name, st_name, b_type, Ins_type, orientation;
+	stringstream os1;
+	size = 0;
+	total_entry = 1;
+	Event temp_db;
+
+	while (inputfile >> nt_name >> st_name >> b_type >> Ins_type >> orientation) {
+		Event *temp_dbv = new Event;
+
+		bool network_flag = (*temp_dbv).set_nt_name(nt_name, total_entry,
+				errorfile);
+		bool station_flag = (*temp_dbv).set_st_name(st_name, total_entry,
+				errorfile);
+		bool band_flag = (*temp_dbv).set_b_type(b_type, total_entry, errorfile);
+		bool instrument_flag = (*temp_dbv).set_Ins_type(Ins_type, total_entry,
+				errorfile);
+
+		bool orientation_flag = (*temp_dbv).set_orientation(orientation,
+				total_entry, errorfile);
+
+		if ((network_flag == 0) && (station_flag == 0) && (band_flag == 0)
+				&& (instrument_flag == 0) && (orientation_flag == 0)) {
+
+			dbv.push_back(temp_dbv);
+
+			total_co = total_co + orientation.size();
+
+		} else {
+
+			invalid_counter = invalid_counter + 1;
+
+		}
+
+		total_entry++;
+
+	}
+
+	valid_counter = total_entry - invalid_counter - 1;
+	return true;
+}
+
+void generate_recorded_list(Earthquake er_info[1], ofstream& outputfile,
+		int & size, int & total_co, vector<Event *> &dbv) {
+
+	string event_id, nt_name, orientation, st_name, b_type, Ins_type;
+
+	outputfile << total_co << "\n";
+
+	for (vector<Event *>::iterator it = dbv.begin(); it != dbv.end(); it++) {
+
+		int sc = (*it)->get_orientation().size();
+
+		for (int j = 0; j < sc; j++) {
+			outputfile << er_info[0].get_event_id(er_info) << "."
+					<< (*it)->Network_Code_to_string((*it)->get_nt_name())
+					<< "." << (*it)->get_st_name() << "."
+					<< (*it)->Band_Type_to_string((*it)->get_band_type())
+					<< (*it)->Instro_Type_to_string((*it)->get_Ins_type())
+					<< (*it)->get_orientation()[j] << "\n";
+
+		}
+
+	}
+}
+
+
 
 void print_summary(ofstream& errorfile, int invalid_counter, int valid_counter,
 		int total_co, string eq_file_name) {
