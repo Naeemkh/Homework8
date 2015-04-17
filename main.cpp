@@ -5,7 +5,6 @@
  */
 
 #include <iostream>
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
@@ -21,15 +20,32 @@
 
 using namespace std;
 
+enum months {
+	January = 1,
+	February,
+	March,
+	April,
+	May,
+	June,
+	July,
+	August,
+	September,
+	October,
+	November,
+	December
+};
+
 
 /***************************** Function prototypes *************************************/
 
-bool read_input(ifstream&, ofstream&, Event db[MAXSIZE], int &, int &, int &,
-                int &, int &, vector<Event> &dbv);
+bool read_input(ifstream&, ofstream&, int &, int &, int &, int &, int &, vector<Event *> &dbv);
+
+
 
 void print_header(string, string, string, Earthquake er_info[1], ofstream&);
-void generate_recorded_list(Earthquake er_info[1], ofstream&, Event db[MAXSIZE],
-                            int &, int &);
+void generate_recorded_list(Earthquake er_info[1], ofstream&, int &, int &,
+		vector<Event *> &dbv);
+
 
 void read_check_header(ifstream& inputfile, ofstream&, Earthquake er_info[1], string);
 
@@ -52,7 +68,7 @@ int main(int argc, char** argv) {
     ifstream inputfile;
     ofstream outputfile;
     
-    open_output(errorfile, "logfile.log");
+    open_output(errorfile, "errorfile.log");
     
     for (list<string>::iterator it = file_names.begin(); it != file_names.end();
          it++) {
@@ -71,17 +87,19 @@ int main(int argc, char** argv) {
 
 		read_check_header(inputfile, errorfile, er_info, eq_file_name);
 
-		print_output(errorfile, cout, "Header read correctly! \n");
+				print_summary(errorfile, invalid_counter, valid_counter, total_co,
+				eq_file_name);
 
-		open_output(outputfile, errorfile, output_fname);
+		generate_recorded_list(er_info, outputfile, number_of_events, total_co,
+				dbv);
 
-		print_header(month_name, day, year, er_info, outputfile);   //month name incorporated
 		
-		////////
-		
-		////////
+		inputfile.close();
+		outputfile.close();
+
+		print_output(errorfile, cout, "==== \n\n");
+	
         
-        print_output(errorfile, cout, "==== \n\n");
         
    }
     
