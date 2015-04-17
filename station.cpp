@@ -1,12 +1,7 @@
 #include "station.h"
-#include "input_validate.h"
+#include "io_print_handler.h"
 
-string Event::uppercase(string & s) {
-	string result = s;
-	for (int i = 0; i < (int) result.size(); i++)
-		result[i] = toupper(result[i]);
-	return result;
-}
+
 
 Network_Code Event::string_to_Network_Code(string s) {
 
@@ -60,6 +55,39 @@ string Event::Band_Type_to_string(Band_Type c) {
 	// It should never get here!!
 	exit (EXIT_FAILURE);
 }
+
+Instro_Type Event::string_to_instro_Type(string s) {
+
+	string ss = uppercase(s);
+
+	if (ss == "HIGH-GAIN")
+		return HighGain;
+	if (ss == "LOW-GAIN")
+		return LowGain;
+	if (ss == "ACCELEROMETER")
+		return Accelerometer;
+
+	// It should never get here!!
+	exit(EXIT_FAILURE);
+
+}
+
+string Event::Instro_Type_to_string(Instro_Type c) {
+	switch (c) {
+	case HighGain:
+		return "H";
+	case LowGain:
+		return "L";
+	case Accelerometer:
+		return "N";
+
+	}
+	// It should never get here!!
+	exit(EXIT_FAILURE);
+}
+
+
+
 
 bool Event::set_nt_name(Event db[MAXSIZE], string nt_name1, int total_entry,
 		ofstream& errorfile) {
@@ -171,6 +199,11 @@ bool Event::set_Ins_type(Event db[MAXSIZE], string Ins_type1, int total_entry, o
 Instro_Type Event::get_Ins_type(Event db[MAXSIZE]) {
 	return Ins_type;
 }
+
+Band_Type Event::get_band_type() {
+	return b_type;
+}
+
 
 bool Event::set_orientation(Event db[MAXSIZE], string orientation1, int total_entry, ofstream& errorfile) {
 
