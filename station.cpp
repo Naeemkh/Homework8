@@ -237,11 +237,9 @@ Band_Type Event::get_band_type() {
 	return b_type;
 }
 
-<<<<<<< HEAD
-bool Event::set_orientation( string orientation1, int total_entry, ofstream& errorfile) {
-=======
+
 bool Event::set_orientation(string orientation1, int total_entry, ofstream& errorfile) {
->>>>>>> 7ba907d1e1ce1dee7e660f0ded974a386e57f01d
+
 
 	bool or_flag = 0;
 	int kk = 1;
