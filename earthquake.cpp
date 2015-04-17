@@ -1,4 +1,4 @@
-#include "earthquake.h"
+#include "earthquake.h" 
 
 int Earthquake::set_lat(Earthquake er_info[1], ofstream& errorfile,
 		double lat1) {
